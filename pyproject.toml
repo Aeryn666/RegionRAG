@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+include = ["colpali_engine"]
+
+[project]
+name = "colpali_engine"
+dynamic = ["version"]
+description = "The code used to train and run inference with the ColPali architecture."
+authors = [
+    { name = "Manuel Faysse", email = "manuel.faysse@illuin.tech" },
+    { name = "Hugues Sibille", email = "hugues.sibille@illuin.tech" },
+    { name = "Tony Wu", email = "tony.wu@illuin.tech" },
+]
+maintainers = [
+    { name = "Manuel Faysse", email = "manuel.faysse@illuin.tech" },
+    { name = "Tony Wu", email = "tony.wu@illuin.tech" },
+]
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy==1.26.4",
+    "peft>=0.14.0,<0.16.0",
+    "pillow>=10.0.0",
+    "requests",
+    "scipy",
+    "torch>=2.5.0,<2.7.0",
+    "transformers>=4.51.1,<4.52.0",
+]
+
+[project.optional-dependencies]
+train = [
+    "accelerate>=0.34.0,<1.7.0",
+    "bitsandbytes",
+    "configue>=5.0.0",
+    "datasets>=2.19.1",
+    "mteb>=1.16.3,<2",
+    "pillow>=10.0.0,<11.3.0",
+    "typer>=0.15.1",
+]
+
+interpretability = [
+    "einops>=0.8.0,<1.0.0",
+    "matplotlib>=3.9.0,<4.0.0",
+    "seaborn>=0.13.2,<1.0.0",
+]
+
+dev = ["pytest>=8.0.0", "ruff>=0.4.0"]
+
+eval = [
+    "vllm==0.7.3",
+    "qwen-vl-utils==0.0.11",
+    "modelscope",
+]
+
+all = [
+    "colpali-engine[dev]",
+    "colpali-engine[interpretability]",
+    "colpali-engine[train]",
+    "colpali-engine[eval]",
+]
+
+[project.urls]
+homepage = "https://github.com/illuin-tech/colpali"
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::Warning"]
+markers = ["slow: marks test as slow"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
