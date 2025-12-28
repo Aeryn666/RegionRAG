@@ -43,7 +43,7 @@ conda install -y mkl=2023.1.0
 ```
 
 ## 📊 Data Preparation
-We put all our training and evaluation model under ```models``` folder. The structure are here:
+We put all our training and evaluation model under ```models``` folder, and put all datasets in ```data_dir``` folder. The training datasets include [VisRAG in-domain data](https://huggingface.co/datasets/openbmb/VisRAG-Ret-Train-In-domain-data) and [Visual-CoT](https://huggingface.co/datasets/deepcs233/Visual-CoT). The structure are here:
 ```python
 RegionRAG
 ├── data_dir
@@ -74,7 +74,7 @@ bash scripts/train/train.sh
 ```
 
 ## 🤗 Checkpoints
-We will release our trained checkpoint in Huggingface.
+We release our trained checkpoint in [Huggingface 🤗](https://huggingface.co/Aeryn666/RegionRet).
 
 ## 🤖 Evaluation
 Evaluation scripts are under ```scripts/eval``` folder. The ```scripts/eval/eval.sh``` script consists of two parts: evaluation of retrieval results and evaluation of generation results.
@@ -87,15 +87,16 @@ If you want to evaluate performance on different datasets, you need to refer to 
 ## 📑 Citation
 If you find our work useful for your research and applications, please cite using this BibTeX:
 ```bibtex
-@misc{li2025regionragregionlevelretrievalaugumentedgeneration,
-      title={RegionRAG: RegionRAG: Region-level Retrieval-Augumented Generation for Visually-Rich Documents}, 
-      author={Yinglu Li and Zhiying Lu and Zhihang Liu and Chuanbin Liu and Hongtao Xie},
+@misc@misc{li2025regionragregionlevelretrievalaugmentedgeneration,
+      title={RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding}, 
+      author={Yinglu Li and Zhiying Lu and Zhihang Liu and Yiwei Sun and Chuanbin Liu and Hongtao Xie},
       year={2025},
       eprint={2510.27261},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2510.27261}, 
 }
+
 ```
 
 ## 👍 Acknowledgement
